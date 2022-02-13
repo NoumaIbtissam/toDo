@@ -37,16 +37,21 @@ class _HomeState extends State<Home> {
                 ),
                 Expanded(
                     child: FutureBuilder<List>(
-
                       initialData: [],
                       future: _dbHelper.getTasks(),
                       builder: (context,snapshot){
                         return ListView.builder(
-                            itemCount: snapshot.data!.length,
+                            itemCount: snapshot.data == null ? 0 : snapshot.data!.length,
                             itemBuilder: (context,index){
-                              return ToDoCard(
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) => TaskPage(task:snapshot.data![index])));
+                              },
+                                child:ToDoCard(
                                   snapshot.data![index].title,
                                   snapshot.data![index].description,
+                                ),
                               );
                             },
                             );
@@ -63,11 +68,11 @@ class _HomeState extends State<Home> {
               bottom: 0.0,
               right: 0.0,
 
-              // we use gestureDectector so that we can call onTap function
+              // we use gesture Dectector so that we can call onTap function
               child: GestureDetector(
                 onTap: (){
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => TaskPage()),
+                      MaterialPageRoute(builder: (context) => TaskPage(task:null)),
                   ).then((value) {
                     setState(() {
 

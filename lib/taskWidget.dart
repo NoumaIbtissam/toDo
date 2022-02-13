@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class TaskWidget extends StatelessWidget {
   late final String task;
   late final bool isDone;
-  TaskWidget(this.task,@required this.isDone);
+  TaskWidget(@required this.task,@required this.isDone);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,7 +19,7 @@ class TaskWidget extends StatelessWidget {
             width: 30.0,
             height: 30.0,
             decoration: BoxDecoration(
-              color: isDone? Color(0xff742CFA) : Colors.transparent,
+              color: isDone ? Color(0xff742CFA) : Colors.transparent,
               borderRadius: BorderRadius.circular(12.0),
               border: isDone ? null : Border.all(
                 color: Color(0xff742CFA),
