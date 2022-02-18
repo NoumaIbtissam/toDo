@@ -11,7 +11,7 @@ class ToDoCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(
-        bottom: 20.0
+          bottom: 20.0
       ),
       padding: EdgeInsets.symmetric(
         horizontal: 20.0,
@@ -19,7 +19,7 @@ class ToDoCard extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
-        color: Color(0xffFAF6D8),
+        color: Colors.white,
 
       ),
       child: Column(
@@ -27,8 +27,8 @@ class ToDoCard extends StatelessWidget {
         children: [
           Container(
             //padding: EdgeInsets.all(5.0),
-              child:Text(
-                title ?? "Card Title",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold,),),
+            child:Text(
+              title ?? "Card Title",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold,),),
           ),
           Container(
             padding: EdgeInsets.only(
