@@ -3,10 +3,31 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/home.dart';
+import 'package:showcaseview/showcaseview.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:todo/translation/codegen_loader.g.dart';
+import 'globals.dart' as globals;
 
 
-void main() {
-  runApp(MyApp());
+
+
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+      MyApp(),
+    // EasyLocalization(
+    //     child: MyApp(),
+    //     supportedLocales: [
+    //       Locale('en'),
+    //       Locale('ar'),
+    //     ],
+    //     fallbackLocale: Locale('en'),
+    //     assetLoader: CodegenLoader(),
+    //     path: 'assets/translation')
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +35,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: SplashScreen(),
+      // supportedLocales: context.supportedLocales,
+      // localizationsDelegates: context.localizationDelegates,
+      // locale: context.locale,
+      home: Home(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -25,13 +50,17 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 5), () {
       Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (_) => Home()));
+          .pushReplacement(MaterialPageRoute(builder: (_) => ShowCaseWidget(
+          builder: Builder(builder: (_) => Home()),
+          onStart: (index,key) => globals.showCaseFlagHome = true,)
+          ));
     });
   }
 
